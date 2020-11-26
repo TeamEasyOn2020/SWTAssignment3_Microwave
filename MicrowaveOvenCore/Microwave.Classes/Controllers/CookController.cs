@@ -40,7 +40,7 @@ namespace Microwave.Classes.Controllers
         public void StartCooking(int power, int time)
         {
             myPowerTube.TurnOn(power);
-            myTimer.Start(time);
+            myTimer.Start(time); 
             isCooking = true;
         }
 

@@ -24,7 +24,7 @@ namespace Microwave.Classes.Boundary
 
         public void Start(int time)
         {
-            TimeRemaining = time;
+            TimeRemaining = time*60; // Flyttet gange 60 hertil
             timer.Enabled = true;
         }
 
@@ -43,7 +43,8 @@ namespace Microwave.Classes.Boundary
         {
             // One tick has passed
             // Do what I should
-            TimeRemaining -= 1000;
+            //TimeRemaining er i sekunder
+            TimeRemaining -= 1;
             TimerTick?.Invoke(this, EventArgs.Empty);
 
             if (TimeRemaining <= 0)

@@ -36,7 +36,60 @@ namespace Microwave.Test.Integration
 
             ui = new UserInterface(powerButton, timeButton, startCancelButton, door, fakeDisplay, light,
                 cookController);
+            cookController.UI = ui;
         }
+
+
+        [TestCase(1, 50)]
+        [TestCase(14, 700)]
+        [TestCase(15, 50)]
+        public void CookingStartedPowerTubeTurnOn(int powerPressed, int powerPowerReceived)
+        {
+            for (int i = 0; i < powerPressed; i++)
+                powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+
+
+            fakePowerTube.Received(1).TurnOn(powerPowerReceived);
+        }
+
+        [Test]
+        public void CookingStoppedPowerTubeTurnedOff()
+        {
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+            startCancelButton.Press();
+
+
+            fakePowerTube.Received(1).TurnOff();
+        }
+
+        [Test]
+        public void CookingStoppedTimerExpiredUICookingIsDone()
+        {
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+            fakeTimer.Expired += Raise.EventWith(System.EventArgs.Empty);
+
+
+            fakeDisplay.Received(1).Clear();
+        }
+
+        [Test]
+        public void CookingStoppedDoorOpenedPowerTubeTurnedOff()
+        {
+            powerButton.Press();
+            timeButton.Press();
+            startCancelButton.Press();
+            door.Open();
+
+            fakePowerTube.Received(1).TurnOff();
+        }
+
+
 
 
     }
