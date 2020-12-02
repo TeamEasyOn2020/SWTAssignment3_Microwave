@@ -16,7 +16,7 @@ namespace Microwave.Classes.Boundary
 
         public void TurnOn(int power)
         {
-            if (power < 1 || 700 < power)  // ændret 100 til 700, så den kan modtage, den maksimale antal watt, der tillades på UI'et
+            if (power < 50 || 700 < power)  // ændret 100 til 700 og 0 til 50 så den kan modtage, den minimale og maksimale antal watt, der tillades på UI'et
             {
                 throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 100 (incl.)");
             }

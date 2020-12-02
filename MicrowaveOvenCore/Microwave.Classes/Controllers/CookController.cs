@@ -37,10 +37,10 @@ namespace Microwave.Classes.Controllers
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
 
-        public void StartCooking(int power, int time)
+        public void StartCooking(int power, int timeInSeconds)
         {
             myPowerTube.TurnOn(power);
-            myTimer.Start(time); 
+            myTimer.Start(timeInSeconds); 
             isCooking = true;
         }
 

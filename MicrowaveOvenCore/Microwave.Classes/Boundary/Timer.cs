@@ -22,9 +22,9 @@ namespace Microwave.Classes.Boundary
         }
 
 
-        public void Start(int time)
+        public void Start(int timeInSeconds) // Time hedder nu timeInSeconds
         {
-            TimeRemaining = time*60; // Flyttet gange 60 hertil
+            TimeRemaining = timeInSeconds; 
             timer.Enabled = true;
         }
 
